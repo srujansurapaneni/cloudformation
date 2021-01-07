@@ -1,0 +1,31 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 211,
+                    "y": 83
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "EC202":{
+  "Type" : "AWS::EC2::Instance",
+  "Properties" : {
+      "ImageId" : "ami-0be2609ba883822ec",
+      "InstanceType" : "t2.micro",
+      "SecurityGroupIds" : [ "sg-00d39a1389c552391" ],
+      "SubnetId" : "subnet-e40880e8"
+    }
+}
+
+}
+}

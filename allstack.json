@@ -1,0 +1,172 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 211,
+          "y": 83
+        },
+        "z": 0,
+        "embeds": []
+      }
+    }
+  },
+  "Resources": {
+    "VPC02": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "_comment": "UPDATE this CIDR block",
+        "CidrBlock": "172.31.0.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "vpc-2"
+          }
+        ]
+      }
+    },
+    "SN02": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "_comment": "UPDATE this CIDR block again",
+        "VpcId": "vpc-0437b559bcacf9d3e",
+        "CidrBlock": "172.31.0.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "subnet-2"
+          }
+        ]
+      }
+    },
+    "EC202": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "_comment": "UPDATE the above created subnetId here",
+        "ImageId": "ami-0be2609ba883822ec",
+        "InstanceType": "t2.micro",
+        "SecurityGroupIds": [
+          "sg-00d39a1389c552391"
+        ],
+        "SubnetId": "subnet-e40880e8"
+      }
+    },
+    "SG02": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "sampleSg02",
+        "GroupDescription": "vpc tester sg",
+        "_comment": "UPDATE vpcId here",
+        "VpcId": "vpc-0437b559bcacf9d3e"
+      }
+    },
+    "sgtesteringress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "_comment": "UPDATE security group name here",
+      "DependsOn": "SG02",
+      "Properties": {
+        "_comment": "UPDATE security group name here",
+        "GroupId": {
+          "Ref": "SG02"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "0",
+        "ToPort": "65535",
+        "SourceSecurityGroupId": {
+          "Ref": "SG02"
+        }
+      }
+    },
+    "EBStore02": {
+      "Type": "AWS::EC2::Volume",
+      "Properties": {
+        "Size": "100",
+        "_comment": "UPDATE this AZ here",
+        "AvailabilityZone": "us-east-1a"
+      }
+    },
+    "RDS02": {
+      "Type": "AWS::RDS::DBCluster",
+      "Properties": {
+        "_comment": "UPDATE below fields",
+        "Engine": "aurora-postgresql",
+        "MasterUsername": "postms",
+        "MasterUserPassword": "passmaster"
+      }
+    },
+    "S302": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "_comment": "UPDATE below bucket name",
+        "BucketName": "s3v2ss"
+      }
+    },
+    "APIGW02": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "_comment": "UPDATE below apigw name",
+        "Name": "testapigw2"
+      }
+    },
+    "DYNAMODB02": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "_comment": "UPDATE below fields",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "ArtistId",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "ArtistId",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableName": "Extable",
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      }
+    },
+    "KMS02": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "An example symmetric CMK",
+        "KeyPolicy": {
+          "Version": "2012-10-17",
+          "Id": "key-default-1",
+          "Statement": [
+            {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::092781121214:root"
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    },
+    "SQS02": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "testQ2",
+        "VisibilityTimeout": 30,
+        "DelaySeconds": 0,
+        "ReceiveMessageWaitTimeSeconds": 15,
+        "MessageRetentionPeriod": 60,
+        "MaximumMessageSize": 2048
+      }
+    }
+  }
+}

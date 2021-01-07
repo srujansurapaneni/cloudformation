@@ -1,0 +1,29 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 211,
+                    "y": 83
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "RDS02":{
+  "Type" : "AWS::RDS::DBCluster",
+  "Properties" : {
+      "Engine" : "aurora-postgresql",
+      "MasterUsername" : "postms",
+      "MasterUserPassword" : "passmaster"
+    }
+}
+}
+}

@@ -1,0 +1,33 @@
+{  
+  "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 211,
+                    "y": 83
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+  "Resources":{
+    "VPC02":{  
+      "Type":"AWS::EC2::VPC",
+      "Properties":{  
+        "CidrBlock":"172.31.0.0/24",
+        "Tags":[  
+          {  
+            "Key":"Name",
+            "Value":"vpc-2"
+          }
+        ]
+      }
+    }
+  }
+}

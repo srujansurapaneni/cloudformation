@@ -1,0 +1,41 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 211,
+          "y": 83
+        },
+        "z": 0,
+        "embeds": []
+      }
+    }
+  },
+  "Resources": {
+    "DYNAMODB02": {
+  "Type" : "AWS::DynamoDB::Table",
+  "Properties" : {
+      "AttributeDefinitions": [
+                    {
+                        "AttributeName": "ArtistId",
+                        "AttributeType": "S"
+                    }
+                  ],
+      "KeySchema" : [ {
+                        "AttributeName": "ArtistId",
+                        "KeyType": "HASH"
+                    } ],
+      "TableName" : "Extable",
+      "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                }
+    }
+}
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "74ae86ef-a359-49df-b7aa-35e7ff5e3da5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 211,
+                    "y": 83
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "LFELO0": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": "Sample_lambda_v1",
+                "Handler" : "lambda_function.lambda_handler",
+                "Runtime" : "python3.8",
+                "Code": {
+                          "S3Bucket": "sscfresources",
+                          "S3Key": "lambda/testv-2c06547a-c5dc-48e7-aa69-fdbd0054afaf.zip"
+                         },
+                "Role": "arn:aws:iam::092781121214:role/service-role/testLamb-role-wfq8h38a"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "74ae86ef-a359-49df-b7aa-35e7ff5e3da5"
+                }
+            }
+        }
+    }
+}
